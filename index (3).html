@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faceless Pro</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #00ffcc;
+    }
+
+    input, button, select {
+      padding: 12px;
+      margin: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background: #00ffcc;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #ccc;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Faceless Pro 🎬</h1>
+  <p>Generate Viral Faceless Video Ideas</p>
+
+  <select id="niche">
+    <option value="">Select a niche</option>
+    <option value="finance">Finance</option>
+    <option value="fitness">Fitness</option>
+    <option value="crypto">Crypto</option>
+    <option value="tech">Tech</option>
+    <option value="lifestyle">Lifestyle</option>
+  </select>
+  <br>
+  <button onclick="generateIdea()">Generate Idea</button>
+  <button onclick="copyIdea()">Copy Idea</button>
+
+  <div id="result"></div>
+
+  <script>
+    const ideasDatabase = {
+      finance: [
+        "Top 5 Finance Secrets Nobody Talks About",
+        "How Beginners Make Money With Finance",
+        "The Dark Side of Finance",
+        "This Finance Trick Changed Everything",
+        "Why Most People Fail At Finance"
+      ],
+      fitness: [
+        "Top 5 Fitness Hacks You Need",
+        "How Beginners Build Muscle Fast",
+        "The Dark Side of Fitness Trends",
+        "This Fitness Trick Changed Everything",
+        "Why Most People Fail at Fitness"
+      ],
+      crypto: [
+        "Top 5 Crypto Secrets for 2026",
+        "How Beginners Make Money With Crypto",
+        "The Dark Side of Crypto Trading",
+        "This Crypto Trick Changed Everything",
+        "Why Most People Fail at Crypto"
+      ],
+      tech: [
+        "Top 5 Tech Innovations You Missed",
+        "How Beginners Learn Tech Fast",
+        "The Dark Side of Tech Startups",
+        "This Tech Trick Changed Everything",
+        "Why Most People Fail at Tech"
+      ],
+      lifestyle: [
+        "Top 5 Lifestyle Hacks to Try",
+        "How Beginners Upgrade Their Lifestyle",
+        "The Dark Side of Luxury Living",
+        "This Lifestyle Trick Changed Everything",
+        "Why Most People Fail at Lifestyle Choices"
+      ]
+    };
+
+    function generateIdea() {
+      const niche = document.getElementById("niche").value;
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = ""; // clear previous
+      if(!niche) {
+        resultDiv.innerHTML = "Please select a niche.";
+        return;
+      }
+
+      const ideas = ideasDatabase[niche];
+      const randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
+
+      // Typing animation
+      let i = 0;
+      function typeWriter() {
+        if(i < randomIdea.length) {
+          resultDiv.innerHTML += randomIdea.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50); // typing speed
+        }
+      }
+      typeWriter();
+    }
+
+    function copyIdea() {
+      const result = document.getElementById("result").innerText;
+      if(result) {
+        navigator.clipboard.writeText(result).then(() => {
+          alert("Idea copied to clipboard!");
+        });
+      } else {
+        alert("No idea to copy!");
+      }
+    }
+  </script>
+
+</body>
+</html>
