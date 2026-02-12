@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faceless Pro</title>
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #00ffcc;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      background: #00ffcc;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Faceless Pro 🎬</h1>
+  <p>Generate Viral Faceless Video Ideas</p>
+
+  <input type="text" id="niche" placeholder="Enter your niche (e.g. finance)">
+  <br>
+  <button onclick="generateIdea()">Generate Idea</button>
+
+  <div id="result"></div>
+
+  <script>
+    function generateIdea() {
+      var niche = document.getElementById("niche").value;
+
+      if(niche === "") {
+        document.getElementById("result").innerHTML = "Please enter a niche.";
+        return;
+      }
+
+      var ideas = [
+        "Top 5 " + niche + " Secrets Nobody Talks About",
+        "How Beginners Make Money With " + niche,
+        "The Dark Side of " + niche,
+        "This " + niche + " Trick Changed Everything",
+        "Why Most People Fail At " + niche
+      ];
+
+      var randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
+
+      document.getElementById("result").innerHTML = randomIdea;
+    }
+  </script>
+
+</body>
+</html>
